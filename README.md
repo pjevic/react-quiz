@@ -57,3 +57,9 @@ function reducer(state, action) {
   }
 }
 ```
+
+## Credits
+
+This project uses a CSS loader from the [100 CSS Loaders](https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje) collection by [Afif](https://dev.to/afif).
+
+Explore their other amazing work for more creative loader options!

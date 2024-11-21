@@ -2,12 +2,12 @@
 
 import Options from "./Options";
 
-function Question({ question }) {
+function Question({ dispatch, question, answer }) {
   console.log(question);
   return (
     <div>
       <h4>{question.question}</h4>
-      <Options question={question} />
+      <Options dispatch={dispatch} question={question} answer={answer} />
     </div>
   );
 }

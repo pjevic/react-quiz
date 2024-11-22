@@ -6,6 +6,7 @@ import Main from "./components/Main";
 import Loader from "./components/Loader";
 import Error from "./components/Error";
 import StartScreen from "./components/StartScreen";
+import Progress from "./components/Progress";
 import Question from "./components/Question";
 import NextButton from "./components/NextButton";
 
@@ -59,12 +60,13 @@ function reducer(state, action) {
 }
 
 export default function App() {
-  const [{ questions, status, index, answer }, dispatch] = useReducer(
+  const [{ questions, status, index, answer, score }, dispatch] = useReducer(
     reducer,
     initalState
   );
 
   const numQuestions = questions.length;
+  const maxScore = questions.reduce((prev, curr) => prev + curr.points, 0);
 
   useEffect(function () {
     const controller = new AbortController();
@@ -103,6 +105,13 @@ export default function App() {
         )}
         {status === "active" && (
           <>
+            <Progress
+              index={index}
+              numQuestions={numQuestions}
+              score={score}
+              maxScore={maxScore}
+              answer={answer}
+            />
             <Question dispatch={dispatch} question={questions[index]} answer={answer} />
             <NextButton dispatch={dispatch} answer={answer} />
           </>

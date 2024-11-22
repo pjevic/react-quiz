@@ -9,6 +9,7 @@ This repository documents advanced React concepts I learned from my favorite tea
 ## Table of Contents
 
 1. [Managing State With useReducer](#managing-state-with-usereducer)
+2. [Tips & Tricks](#tips--tricks)
 
 ---
 
@@ -56,6 +57,16 @@ function reducer(state, action) {
       throw new Error("Unknown action");
   }
 }
+```
+
+## Tips & Tricks
+
+### ⚡ Using `Number()` to Convert Values
+
+In JavaScript, the `Number()` function can be used to convert values to numbers. This is especially helpful when you need to perform arithmetic operations with boolean values. Here's a quick example showing how you can use it in a React component:
+
+```javascript
+<progress max={numQuestions} value={index + Number(answer !== null)}></progress>
 ```
 
 ## Credits

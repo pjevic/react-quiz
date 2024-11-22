@@ -1,6 +1,6 @@
 /** @format */
 
-import { useEffect, useReducer } from "react";
+import { startTransition, useEffect, useReducer } from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Loader from "./components/Loader";
@@ -59,7 +59,14 @@ function reducer(state, action) {
       return {
         ...state,
         status: "finished",
-        history: state.score > state.highsocre ? state.score : state.highsocre,
+        highsocre: state.score > state.highsocre ? state.score : state.highsocre,
+      };
+    case "restart":
+      return {
+        ...initalState,
+        questions: state.questions,
+        highsocre: state.highsocre,
+        status: "active",
       };
 
     default:
@@ -130,7 +137,12 @@ export default function App() {
           </>
         )}
         {status === "finished" && (
-          <FinishScreen score={score} maxScore={maxScore} highsocre={highsocre} />
+          <FinishScreen
+            dispatch={dispatch}
+            score={score}
+            maxScore={maxScore}
+            highsocre={highsocre}
+          />
         )}
       </Main>
     </div>
